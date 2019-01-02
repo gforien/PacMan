@@ -15,12 +15,13 @@ import java.lang.InterruptedException;
 import java.awt.Image;
 import java.awt.Color;
 import java.lang.Math;
+import java.net.URL;
 
 /**
  * Classe principale du programme PacMan
  * Elle instancie toutes les autres, elle définit les constantes necessaires au jeu
  * et elle contient la mainloop
- * @version 0.9
+ * @version 1.0
  * @author Iane Vallanzasca
  * @author Youssef Bricha
  * @author Gabriel Forien
@@ -29,18 +30,18 @@ public class Jeu extends Canvas {
 
     public static final String TITRE = "Pac-Man";
     // chemins des images à  charger
-    public static final String RES = "src/main/resources/";
-    public static final String CHEMIN_PACMAN = RES+"images/PacMan";
-    public static final String CHEMIN_PACMAN_0 = RES+"images/PacMan.DROITE/5.png";
-    public static final String CHEMIN_FANTOME_1 = RES+"images/Fantome/ghost_blue.png";
-    public static final String CHEMIN_FANTOME_2 = RES+"images/Fantome/ghost_red.png";
-    public static final String CHEMIN_FANTOME_3 = RES+"images/Fantome/ghost_pink.png";
-    public static final String CHEMIN_FANTOME_4 = RES+"images/Fantome/ghost_orange.png";
-    public static final String CHEMIN_PBOULE = RES+"images/little_dot.png";
-    public static final String CHEMIN_GBOULE = RES+"images/big_dot.png";
-    public static final String MUSIQUE_DEBUT = RES+"audio/pacman_beginning.wav";
-    public static final String MUSIQUE_GAGNE = RES+"audio/pacman_intermission.wav";
-    public static final String MUSIQUE_PERD  = RES+"audio/pacman_eatfruit.wav";
+    public static final String RES = "/resources";
+    public static final String CHEMIN_PACMAN = RES+"/images/PacMan";
+    public static final String CHEMIN_PACMAN_0 = RES+"/images/PacMan.DROITE/5.png";
+    public static final String CHEMIN_FANTOME_1 = RES+"/images/Fantome/ghost_blue.png";
+    public static final String CHEMIN_FANTOME_2 = RES+"/images/Fantome/ghost_red.png";
+    public static final String CHEMIN_FANTOME_3 = RES+"/images/Fantome/ghost_pink.png";
+    public static final String CHEMIN_FANTOME_4 = RES+"/images/Fantome/ghost_orange.png";
+    public static final String CHEMIN_PBOULE = RES+"/images/little_dot.png";
+    public static final String CHEMIN_GBOULE = RES+"/images/big_dot.png";
+    public static final String MUSIQUE_DEBUT = RES+"/audio/pacman_beginning.wav";
+    public static final String MUSIQUE_GAGNE = RES+"/audio/pacman_intermission.wav";
+    public static final String MUSIQUE_PERD  = RES+"/audio/pacman_eatfruit.wav";
 
     // le plateau sera initialisé plus tard à  partir de ce texte
     // c'est bien plus pratique que d'instancier 780 objets Case un par un
@@ -112,8 +113,10 @@ public class Jeu extends Canvas {
 
     public static Image importerImage(String chemin) {
         Image img = null;
+        URL url = null;
         try {
-            img = ImageIO.read(new File(chemin));
+            url = Jeu.class.getResource(chemin);
+            img = ImageIO.read(url);
         } catch (IOException err) {
             err.printStackTrace();
             System.exit(0);
@@ -132,7 +135,7 @@ public class Jeu extends Canvas {
 
         // on ajoute à  la liste le PacMan, qu'on crée avec une position et une image
         Image pacmanImg = importerImage(CHEMIN_PACMAN_0);
-        // les quatre fantà´mes de la màªme manière
+        // les quatre fantomes de la même manière
         Image fantome1Img = importerImage(CHEMIN_FANTOME_1);
         Image fantome2Img = importerImage(CHEMIN_FANTOME_2);
         Image fantome3Img = importerImage(CHEMIN_FANTOME_3);
@@ -152,11 +155,10 @@ public class Jeu extends Canvas {
             this.list[n+i] = p[i];
         }
 
-        // on ajoute le controleur de jeu, qui ne controlera que le pacman
+        // on ajoute le controleur de jeu, qui ne contrôlera que le pacman
         this.addKeyListener(new EntreeClavier((PacMan)list[0]));
 
         this.jouerMusique(MUSIQUE_DEBUT);
-        //this.addKeyListener(new EntreeClavier2(this));
         this.run();
     }
 
@@ -173,7 +175,7 @@ public class Jeu extends Canvas {
      *
      *  Le programme peut aussi s'executer trop lentement et on doit alors reflechir a l'optimisation
      *  La principale source d'optimisation dans un jeu est de dessiner les objets a l'ecran le moins
-     *  possible puisque c'est une operation très coà»teuse en ressources Il faut alors identifier les
+     *  possible puisque c'est une operation très coûteuse en ressources Il faut alors identifier les
      *  objets statiques: ici, les murs du plateau, et toutes les cases sur lequelles aucun personnage 
      *  ne passe, et ne pas les dessiner tant qu'elles n'evoluent pas
      *  Mais ce jeu etant assez simple, nous n'avons eu aucun besoin d'optimiser notre code, donc nous
@@ -182,8 +184,8 @@ public class Jeu extends Canvas {
      *  On fait alors une distinction entre l'affichage du jeu et l'evolution du jeu :
      *  - l'affichage doit etre aussi rapide que possible
      *  - l'evolution doit etre aussi rapide que voulue, aussi proche que possible d'une frequence definie
-     *  C'est pour cela qu'on va distinguer affichage et evolution/animation pour tous les elements du jeu
-     *  et que la boucle principale appelle ces deux methodes de manière asynchrone
+     *  C'est pour cela qu'on va distinguer affichage et animation pour tous les élements du jeu
+     *  et que la boucle principale va appeler ces deux méthodes de manière asynchrone
      */
     public void run() {
         long temps0 = System.nanoTime();
@@ -204,7 +206,7 @@ public class Jeu extends Canvas {
         double deltaPacMan = 0;
 
         // avoir le focus permet de récupérer les touches entrées au clavier
-        // par défaut, le focus n'est pas forcément fait sur l'objet Jeu dans la fenàªtre
+        // par défaut, le focus n'est pas forcément fait sur l'objet Jeu dans la fenêtre
         // il faut donc le demander
         this.requestFocus();
 
@@ -239,19 +241,19 @@ public class Jeu extends Canvas {
         }
         if (!arretImmediat) {
             if (gagne) {
-                System.out.println("Bravo ! Vous avez gagné !");
+                System.out.println("Bravo !! Vous etes le vainqueur !");
                 jouerMusique(MUSIQUE_GAGNE);
                 try {
                     Thread.sleep(6000);
                 } catch (InterruptedException err) {}
             } else {
-                System.out.println("Vous avez perdu.");
+                System.out.println("Vous avez perdu... :(");
                 jouerMusique(MUSIQUE_PERD);
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException err) {}
             }
-            System.out.println("A bientôt !");
+            System.out.println("A bientot !");
         }
         // on demande à  l'OS la terminaison du processus
         System.exit(0);
@@ -268,12 +270,19 @@ public class Jeu extends Canvas {
         return b;
     }
     public void jouerMusique(String chemin) {
+        URL url = null;
+        AudioInputStream audioInputStream = null;
+        Clip clip = null;
         try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(chemin));
-            Clip clip = AudioSystem.getClip();
+            url = Jeu.class.getResource(chemin);
+            audioInputStream = AudioSystem.getAudioInputStream(url);
+            clip = AudioSystem.getClip();
             clip.open(audioInputStream);
             clip.start();
-        } catch(Exception err) {}
+        } catch(Exception err) {
+        // l'absence de musique n'empêche pas de jouer, donc on laisse passer l'erreur
+            System.out.println("Erreur dans le chargement des musiques !");
+        }
     }
 
     public void animer() {

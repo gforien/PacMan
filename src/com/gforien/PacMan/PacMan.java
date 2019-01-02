@@ -26,7 +26,7 @@ public class PacMan extends Element {
         super(x, y, Jeu.TAILLE_CASE, Id.PACMAN, img);
         this.orient = Orientation.DROITE;
         this.prochainMouv = Orientation.DROITE;
-        this.setVit(2);
+        this.setVit(3);
         this.list = list;
 
         // Récuperer images

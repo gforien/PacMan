@@ -78,7 +78,6 @@ public class Fantome extends Element {
 
 
     public void randirection(){
-        //System.out.println("1");
         int dir = (int)(4*Math.random());
         Element haut = null, bas = null, gauche = null, droite = null;
         switch (orient){
@@ -139,7 +138,6 @@ public class Fantome extends Element {
                 break;
 
             case DROITE:
-                //System.out.println("droite");
                 haut = collisionMur (Orientation.HAUT);
                 bas = collisionMur (Orientation.BAS);
                 if (haut!=null && bas==null){
@@ -168,7 +166,6 @@ public class Fantome extends Element {
                 break;
                 
             case GAUCHE:
-                //System.out.println("gauche");
                 haut = collisionMur (Orientation.HAUT);
                 bas = collisionMur (Orientation.BAS);
                 if (haut!=null && bas==null){
@@ -186,7 +183,6 @@ public class Fantome extends Element {
                 } else if (haut!=null && bas!=null){
                     orient = Orientation.DROITE;
                 }else {
-                    //System.out.println("4");
                     if (dir<2){
                         orient=Orientation.HAUT;
                     } else if (dir>=2 && dir<3){
