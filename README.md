@@ -66,6 +66,7 @@ Dans ces méthodes, on charge les ressources d'abord comme des URL, puis avec le
 
 Nous allons compiler le code source dans un dossier *bin/*. La hiérarchie de type com.gforien.*etc* sera automatiquement recréée, il nous suffira donc ensuite de copier notre dossier de ressources dans le dossier *bin/*.
 ```
+# Après un git clone, à la racine du repository
 ~/pacman $ mkdir bin
 ~/pacman $ javac -d bin/ src/com/gforien/PacMan/*.java
 ~/pacman $ cp -R src/resources/ bin/
