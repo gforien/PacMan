@@ -10,11 +10,11 @@ import java.awt.Image;
  * @author Gabriel Forien
  */
 public class Fantome extends Element {
-    
+
     Element[] list;
     Orientation orient;
     boolean bloque = false;
-    
+
     public Fantome(int x, int y, Image img, Element[] list) {
         super(x, y, Jeu.TAILLE_CASE, Id.FANTOME, img);
         this.setVit(4);
@@ -28,7 +28,7 @@ public class Fantome extends Element {
         if (eAtteint != null){
         randirection();
     }
-        
+
         if(!bloque) {
             switch (orient){
                 case HAUT:
@@ -108,7 +108,7 @@ public class Fantome extends Element {
                     }
                 }
                 break;
-                
+
             case BAS:
                 droite = collisionMur (Orientation.DROITE);
                 gauche = collisionMur (Orientation.GAUCHE);
@@ -164,7 +164,7 @@ public class Fantome extends Element {
                     }
                 }
                 break;
-                
+
             case GAUCHE:
                 haut = collisionMur (Orientation.HAUT);
                 bas = collisionMur (Orientation.BAS);
@@ -192,7 +192,7 @@ public class Fantome extends Element {
                     }
                 }
                 break;
-                
+
         }
     }
 
@@ -210,4 +210,3 @@ public class Fantome extends Element {
         this.bloque = val;
     }
 }
-

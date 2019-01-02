@@ -51,7 +51,7 @@ public class PacMan extends Element {
     public void animer() {
         Element eAtteint;
 
-        eAtteint = collision(Id.FANTOME); 
+        eAtteint = collision(Id.FANTOME);
         if (eAtteint != null) {
             bloque = true;
             ((Fantome)eAtteint).setBloque(true);
@@ -61,7 +61,7 @@ public class PacMan extends Element {
         if(x%Jeu.TAILLE_CASE == 0 && y%Jeu.TAILLE_CASE == 0) {
             // collision avec une Case, on stocke sa référence pour pouvoir supprimer
             // sa petite boule
-            eAtteint = collision(Id.CASE); 
+            eAtteint = collision(Id.CASE);
             if (eAtteint != null) {
                 ((Case)eAtteint).setPBoule(false);
                 if (Jeu.jeuFini(list)) {
@@ -111,9 +111,9 @@ public class PacMan extends Element {
      *  Le design de cette methode est donc axe sur la rapidite d'execution, on boucle sur la liste des
      *  elements et on passe au prochain element a la premiere occasion.
      *  On utilise donc les Id pour cela :
-     *  -les collisions avec les fantomes peuvent se faire n'importe quand, mais il y a un nombre defini 
+     *  -les collisions avec les fantomes peuvent se faire n'importe quand, mais il y a un nombre defini
      *  de Fantomes : quand on a teste les n Fantomes, on peut forcement retourner null
-     *  - les collisions avec les murs ou les Cases n'arrivent que quand le PacMan est "aligne" avec les 
+     *  - les collisions avec les murs ou les Cases n'arrivent que quand le PacMan est "aligne" avec les
      *  Cases. Donc on choisira un moment precis pour appeler collision(id.CASE)
      *
      *  Le plus gros travail de cette methode est de boucler sur toutes les Cases (qui peuvent etre des murs),
@@ -131,8 +131,8 @@ public class PacMan extends Element {
      *
      *  N'ayant pas de probleme de performances, on se permet de garder une methode qui gere des collisions
      *  entre PacMan et les cases en temps reel, meme si ce sont des collisions previsibles.
-     *  On se trouve dans un cas particulier, mais on fait en sorte de ne pas avoir une structure de code qui 
-     *  se reposerait trop sur cela. Ainsi si l'on voulait placer tous nos Element dans autre chose 
+     *  On se trouve dans un cas particulier, mais on fait en sorte de ne pas avoir une structure de code qui
+     *  se reposerait trop sur cela. Ainsi si l'on voulait placer tous nos Element dans autre chose
      *  qu'un tableau Element[] (ex: une LinkedList), on ne remettrait pas en cause l'integrite de notre code
      * @param  idRecherche de l'élément avec lequel on recherche une interaction
      * @return la reference du Fantome ou de la Case avec lequel PacMan rentre en contact
@@ -254,7 +254,7 @@ public class PacMan extends Element {
 
     public Orientation getOrient() {
         return this.orient;
-    }   
+    }
     public Orientation getProchainMouv() {
         return this.prochainMouv;
     }
@@ -279,4 +279,3 @@ public class PacMan extends Element {
         this.bloque = val;
     }
 }
-

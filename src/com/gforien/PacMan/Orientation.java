@@ -47,4 +47,3 @@ public enum Orientation {
         return s;
     }
 }
-

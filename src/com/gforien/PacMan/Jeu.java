@@ -169,14 +169,14 @@ public class Jeu extends Canvas {
      *  (la vitesse a laquelle tourne une boucle while, typiquement) et la vitesse a laquelle
      *  "tourne" le jeu
      *
-     *  Le programme peut s'executer trop rapidement donc on maitrise donc la vitesse a laquelle 
+     *  Le programme peut s'executer trop rapidement donc on maitrise donc la vitesse a laquelle
      *  "tourne" le jeu en definissant une frequence d'execution, et en ne declenchant des actions qu'a
      *  cette frequence
      *
      *  Le programme peut aussi s'executer trop lentement et on doit alors reflechir a l'optimisation
      *  La principale source d'optimisation dans un jeu est de dessiner les objets a l'ecran le moins
      *  possible puisque c'est une operation très coûteuse en ressources Il faut alors identifier les
-     *  objets statiques: ici, les murs du plateau, et toutes les cases sur lequelles aucun personnage 
+     *  objets statiques: ici, les murs du plateau, et toutes les cases sur lequelles aucun personnage
      *  ne passe, et ne pas les dessiner tant qu'elles n'evoluent pas
      *  Mais ce jeu etant assez simple, nous n'avons eu aucun besoin d'optimiser notre code, donc nous
      *  redessinons en noir l'ecran entier, et redessinons tous les objets par-dessus, a chaque affichage

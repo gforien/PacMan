@@ -42,7 +42,7 @@ public class  Case extends Element {
         this.gBoule = val;
     }
 
- 
+
     public static Case[] fillTab(String[] T){
         int hauteur = T.length;
         int largeur = T[0].length();
@@ -98,4 +98,3 @@ public class  Case extends Element {
         return tFinal;
     }
 }
-
