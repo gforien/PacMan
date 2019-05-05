@@ -4,6 +4,7 @@ PacMan (API Java 2D)
 [![Build Status](https://travis-ci.org/gforien/PacMan.svg?branch=master)](https://travis-ci.org/gforien/PacMan)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/699010f64cc548d89e8c333bcfb419c6)](https://www.codacy.com/app/kyoto-public/PacMan?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=gforien/PacMan&amp;utm_campaign=Badge_Grade)
 
+![Screenshot](screenshot.gif)
 
 ## Cycle de vie du projet en CLI
 Une des difficultés dans ce projet a été le fait d'inclure des images et des musiques, alors que tout le projet était à chaque étape compilé à la main, dans un terminal. Dans quel dossier placer les ressources ? Quel chemin spécifier dans le code source ? Comment s'assurer que les ressources seraient trouvées à l'exécution ? Nous avons été confrontés à ces questions et avons tenté d'y répondre de la manière la plus simple possible.
